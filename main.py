@@ -22,10 +22,12 @@ while True:
 
     currentMousePos = mouse.position
 
+    # Drawing arrow in corner
     if gaze.horizontal_ratio() is not None and gaze.vertical_ratio() is not None:
         cv2.arrowedLine(frame, (100, 100), (int(gaze.horizontal_ratio()*200), int(-50+gaze.vertical_ratio()*200)), (0, 255, 0), 9)
         print(int(gaze.vertical_ratio()))
 
+    # Outputting data when recording
     if recordData:
         output.write(str(gaze.horizontal_ratio()) + "," + str(gaze.vertical_ratio()) + "," + str(currentMousePos[0]) + "," + str(currentMousePos[1]) + "\n")
         cv2.circle(frame, (1200, 50), 30, (0, 0, 255), -1)

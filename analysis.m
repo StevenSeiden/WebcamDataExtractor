@@ -1,5 +1,5 @@
 clear;
-data = readtable("/Users/stevenseiden/PycharmProjects/eyeCursorTrack/timeTest.xlsx");
+data = readtable("/Users/stevenseiden/PycharmProjects/eyeCursorTrack/pollTest.xlsx");
 
 eyesX = data{1:end,1};
 eyesY = data{1:end,2};
