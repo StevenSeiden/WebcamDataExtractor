@@ -77,14 +77,19 @@ while setOneAmount/setTwoAmount > 3 || setTwoAmount/setOneAmount > 3
 
 end
 
+
+[idx,C] = kmeans(X,6,'Distance','cityblock',...
+        'Replicates',5,'Options',opts);
+  
+
 figure;
 plot(X(idx==1,1),X(idx==1,2),'r.','MarkerSize',12)
 hold on
 plot(X(idx==2,1),X(idx==2,2),'b.','MarkerSize',12)
-plot(X(idx==3,1),X(idx==3,2),'y.','MarkerSize',12)
-plot(X(idx==4,1),X(idx==4,2),'k.','MarkerSize',12)
-plot(X(idx==5,1),X(idx==5,2),'g.','MarkerSize',12)
-plot(X(idx==6,1),X(idx==6,2),'m.','MarkerSize',12)
+plot(X(idx==3,1),X(idx==3,2),'g.','MarkerSize',12)
+plot(X(idx==4,1),X(idx==4,2),'m.','MarkerSize',12)
+plot(X(idx==5,1),X(idx==5,2),'y.','MarkerSize',12)
+plot(X(idx==6,1),X(idx==6,2),'p.','MarkerSize',12)
 plot(C(:,1),C(:,2),'kx',...
      'MarkerSize',15,'LineWidth',3) 
 legend('Cluster 1','Cluster 2','Centroids',...
