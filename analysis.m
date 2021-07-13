@@ -1,6 +1,7 @@
 clear;
 % close all;
-data = readtable("/Users/stevenseiden/PycharmProjects/eyeCursorTrack/zoomPollLenTest.xlsx");
+%use matlab cell 
+data = readtable("/Users/stevenseiden/PycharmProjects/eyeCursorTrack/pollAnswerTests/choiceB1.xlsx");
 
 eyesX = data{1:end,1};
 eyesY = data{1:end,2};
@@ -97,3 +98,6 @@ legend('Cluster 1','Cluster 2','Centroids',...
 title 'Cluster Assignments and Centroids'
 hold off
 
+
+%try low pass filter,smooth,get framerate
+plot(eyesY)

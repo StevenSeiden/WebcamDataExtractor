@@ -8,9 +8,14 @@ mouse = Controller()
 output = open("output.txt", "w")
 recordData = False
 
+width= int(webcam.get(cv2.CAP_PROP_FRAME_WIDTH))
+height= int(webcam.get(cv2.CAP_PROP_FRAME_HEIGHT))
+
+writer= cv2.VideoWriter('basicvideo.mp4', cv2.VideoWriter_fourcc(*'DIVX'), 20, (width,height))
+
 while True:
     # We get a new frame from the webcam
-    _, frame = webcam.read()
+    ret, frame = webcam.read()
 
     # We send this frame to GazeTracking to analyze it
     gaze.refresh(frame)
@@ -22,6 +27,8 @@ while True:
 
     currentMousePos = mouse.position
 
+    writer.write(frame)
+
     # Drawing arrow in corner
     if gaze.horizontal_ratio() is not None and gaze.vertical_ratio() is not None:
         cv2.arrowedLine(frame, (100, 100), (int(gaze.horizontal_ratio()*200), int(-50+gaze.vertical_ratio()*200)), (0, 255, 0), 9)
@@ -32,6 +39,7 @@ while True:
         output.write(str(gaze.horizontal_ratio()) + "," + str(gaze.vertical_ratio()) + "," + str(currentMousePos[0]) + "," + str(currentMousePos[1]) + "\n")
         cv2.circle(frame, (1200, 50), 30, (0, 0, 255), -1)
 
+
     cv2.imshow("Cursor Position Calculator", frame)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -40,4 +48,5 @@ while True:
     if cv2.waitKey(33) == ord('r'):
         recordData = not recordData
 
+writer.release()
 output.close()
