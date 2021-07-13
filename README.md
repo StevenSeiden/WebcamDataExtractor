@@ -1,7 +1,6 @@
-# Cursor Position Calculator
+# Webcam data extractor
+This project aims to extract data from a user's webcam to find any possible security implications of having your camera on during a video conference. Possible data includes the user's cursor position and answers to polls held through platforms such as Zoom.
 
-This project aims to find the location of a user's mouse cursor on their screen by analyzing their eye movement.
+To start/stop recording data, press `r`. To quit, press `q`.
 
-Made possible by Antoine Lamé's [Gaze Tracking library.](https://github.com/antoinelame/GazeTracking) Records at 5 FPS.
-
-To start/stop recording data, press the r key. To quit, press the q key.
+The Python script records at 5 FPS and is made possible by Antoine Lamé's [Gaze Tracking library.](https://github.com/antoinelame/GazeTracking) This application currently records the user's gaze position as (x,y) coordinates as well as the user's cursor position.

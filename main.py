@@ -11,7 +11,7 @@ recordData = False
 width= int(webcam.get(cv2.CAP_PROP_FRAME_WIDTH))
 height= int(webcam.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
-writer= cv2.VideoWriter('basicvideo.mp4', cv2.VideoWriter_fourcc(*'DIVX'), 20, (width,height))
+writer= cv2.VideoWriter('output.mp4', cv2.VideoWriter_fourcc(*'DIVX'), 20, (width,height))
 
 while True:
     # We get a new frame from the webcam
