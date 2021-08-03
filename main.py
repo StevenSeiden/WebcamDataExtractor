@@ -14,7 +14,8 @@ height = int(webcam.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
 writer = cv2.VideoWriter('output.mp4', cv2.VideoWriter_fourcc(*'DIVX'), 20, (width, height))
 
-userDistance = 0
+pixelsBetweenEyes = 0
+userDistanceFromCam = 0
 
 while True:
     # We get a new frame from the webcam
@@ -30,11 +31,9 @@ while True:
 
     currentMousePos = mouse.position
 
-    userDistance = gaze.pupil_left_coords()
-
     if gaze.pupils_located:
-        userDistance = math.sqrt((gaze.pupil_right_coord_x()-gaze.pupil_left_coord_x())**2+(gaze.pupil_right_coord_y()-gaze.pupil_left_coord_y())**2)
-        print("Distance:" + str(userDistance))
+        pixelsBetweenEyes = math.sqrt((gaze.pupil_right_coord_x() - gaze.pupil_left_coord_x()) ** 2 + (gaze.pupil_right_coord_y() - gaze.pupil_left_coord_y()) ** 2)
+        userDistanceFromCam = 128.4 / pixelsBetweenEyes
 
     # Drawing arrow in corner
     if gaze.horizontal_ratio() is not None and gaze.vertical_ratio() is not None:
@@ -46,10 +45,11 @@ while True:
     # Outputting data when recording
     if recordData:
         output.write(
-            str(gaze.horizontal_ratio()) + "," + str(gaze.vertical_ratio()) + "," + str(currentMousePos[0]) + "," + str(
+            str(gaze.horizontal_ratio()) + "," + str(gaze.vertical_ratio()) + "," + str(userDistanceFromCam) + "," + str(currentMousePos[0]) + "," + str(
                 currentMousePos[1]) + "\n")
         cv2.circle(frame, (1200, 50), 30, (0, 0, 255), -1)
 
+        print("Dist: %2.10fm   Gaze pos: (%10.10s,%10.10s)   Cursor pos: (%2.5f,%2.5f)" % (userDistanceFromCam,str(gaze.horizontal_ratio()),str(gaze.vertical_ratio()),currentMousePos[0],currentMousePos[1]))
         # Saving video data
         writer.write(frame)
 
