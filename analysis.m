@@ -1,7 +1,7 @@
 clear;
 % close all;
 %use matlab cell 
-data = readtable("/Users/stevenseiden/PycharmProjects/eyeCursorTrack/newCam.xlsx");
+data = readtable("/Users/stevenseiden/PycharmProjects/eyeCursorTrack/output.txt");
 
 eyesX = data{1:end,1};
 eyesY = data{1:end,2};
