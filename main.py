@@ -21,8 +21,6 @@ pixelsBetweenEyes = 0
 userDistanceFromCam = 0
 
 
-
-
 while True:
     # We get a new frame from the webcam
     ret, frame = webcam.read()
@@ -50,6 +48,7 @@ while True:
 
     # Outputting data when recording
     if recordData:
+        # Outputting -> x gaze position, y gaze position, user's distance from camera, x cursor position, y cursor position
         output.write(
             str(gaze.horizontal_ratio()) + "," + str(gaze.vertical_ratio()) + "," + str(userDistanceFromCam) + "," + str(currentMousePos[0]) + "," + str(
                 currentMousePos[1]) + "\n")
