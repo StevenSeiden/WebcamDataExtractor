@@ -1,12 +1,26 @@
 clear;
 % close all;
 %use matlab cell 
-data = readtable("/Users/stevenseiden/PycharmProjects/eyeCursorTrack/output.txt");
+data = readtable("/Users/stevenseiden/WebGazer/experiment/0317/experiment_1647615392675");
 
 eyesX = data{1:end,1};
 eyesY = data{1:end,2};
 
-pts = linspace(0, 1, 150);
+title 'Kuiper Belt Clustering'
+xlabel('x gaze area on screen')
+ylabel('y gaze area on screen')
+
+hold on
+kuiperOuter = scatter(eyesX,eyesY,320,'MarkerFaceColor','b',...
+    'MarkerFaceAlpha',.1,'MarkerEdgeAlpha',0);
+
+kuiperInner = scatter(eyesX,eyesY,80,'MarkerFaceColor','b',...
+    'MarkerFaceAlpha',.1,'MarkerEdgeAlpha',0);
+
+
+hold off
+
+
 N = histcounts2(eyesY(:), eyesX(:), pts, pts);
 
 figure;
